@@ -1,0 +1,9 @@
+.nav {
+  grid-area: n;
+  background-color: beige;
+}
+.item {
+  /* text-decoration: none; */
+  color: green;
+  text-decoration-skip-ink: auto;
+}
