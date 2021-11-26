@@ -11,11 +11,11 @@ const MyPosts = () => {
         <button>Remove</button>
       </div>
       <div>
+        <Post message="Hi, how are you?" />
+        <Post message="my first message" />
+        {/* <Post />
         <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
+        <Post /> */}
       </div>
     </div>
   );

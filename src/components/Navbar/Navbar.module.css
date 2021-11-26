@@ -7,3 +7,6 @@
   color: green;
   text-decoration-skip-ink: auto;
 }
+.active {
+  color: blueviolet;
+}
