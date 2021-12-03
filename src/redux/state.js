@@ -1,8 +1,10 @@
+import {rerenderEntireTree} from "../rerender";
+
 let state = {
     profilePage: {
         post: [
-            {message: "Hi, how are you? ", countLike: "11"},
-            {message: "my first message", countLike: "12"}
+            {id:0, message: "Hi, how are you? ", countLike: 11},
+            {id:1, message: "my first message", countLike: 12}
         ]
     },
     dialogsPage: {
@@ -34,6 +36,15 @@ let state = {
         ]
     }
 
+}
+
+export let addPost = (postMessage) => {
+    debugger;
+    let newPost = {
+        id:2, message: postMessage, countLike: 0
+    }
+    state.profilePage.post.push(newPost)
+    rerenderEntireTree(state)
 }
 export default state
 
