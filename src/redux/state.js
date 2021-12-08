@@ -1,3 +1,6 @@
+const ADD_POST = "ADD-POST";
+const ADD_POST_TEXT = "ADD-POST-TEXT";
+const ADD_MESSAGE = "ADD-MESSAGE";
 
 let store = {
     _state : {
@@ -103,6 +106,12 @@ let store = {
         this._callBacker = obsorver
     }
 }
+export const addPostActionCreator = () => ({type: ADD_POST})
 
+export const addPostTextActionCreator = (text) => ({type: ADD_POST_TEXT, newText: text})
+
+export const addMessageActionCreator = () => ({type : ADD_MESSAGE})
+
+export const addPostMessageText = (text) => ({type : "ADD-POST-MESSAGE-TEXT", newText : text})
 export default store
 
