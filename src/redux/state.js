@@ -1,6 +1,8 @@
-const ADD_POST = "ADD-POST";
-const ADD_POST_TEXT = "ADD-POST-TEXT";
-const ADD_MESSAGE = "ADD-MESSAGE";
+import profileReducer from "./profile-reducer";
+import dialogsReducer from "./dialogs-reducer";
+import sidebarReducer from "./sidebar-reducer";
+
+
 
 let store = {
     _state : {
@@ -29,7 +31,7 @@ let store = {
             ],
             newMessageText : ""
         },
-        friendsPage: {
+        sidebar: {
             friends: [
                 {name: "Taras", id: "1"},
                 {name: "Petya", id: "2"},
@@ -48,70 +50,17 @@ let store = {
         return this._state
     },
 
-    // addPost () {
-    //     let newPost = {
-    //         id:2, message: this._state.profilePage.newPostText, countLike: 0
-    //     }
-    //     this._state.profilePage.post.push(newPost)
-    //     this._state.profilePage.newPostText = ""
-    //     this._callBacker(this._state)
-    // },
-    // updatePostText (text) {
-    //     this._state.profilePage.newPostText = text
-    //     this._callBacker(this._state)
-    //
-    // },
-    // addMessage () {
-    //     let newPost = {
-    //         message: this._state.dialogsPage.newMessageText
-    //     }
-    //     this._state.dialogsPage.message.push(newPost)
-    //     this._state.dialogsPage.newMessageText = ""
-    //     this._callBacker(this._state)
-    // },
-    // updateMessageText (text) {
-    //     this._state.dialogsPage.newMessageText = text
-    //     this._callBacker(this._state)
-    //
-    // },
-
     dispatch (action) {
-        if (action.type === "ADD-POST") {
-            let newPost = {
-                id:2, message: this._state.profilePage.newPostText, countLike: 0
-            }
-            this._state.profilePage.post.push(newPost)
-            this._state.profilePage.newPostText = ""
-            this._callBacker(this._state)
-        }
-        else if (action.type === "ADD-POST-TEXT") {
-            this._state.profilePage.newPostText = action.newText
-            this._callBacker(this._state)
-        }
-        else if (action.type === "ADD-MESSAGE") {
-            let newPost = {
-                message: this._state.dialogsPage.newMessageText
-            }
-            this._state.dialogsPage.message.push(newPost)
-            this._state.dialogsPage.newMessageText = ""
-            this._callBacker(this._state)
-        }
-        else if (action.type === "ADD-POST-MESSAGE-TEXT") {
-            this._state.dialogsPage.newMessageText = action.newText
-            this._callBacker(this._state)
-        }
-
+        this._state.profilePage = profileReducer (this._state.profilePage,action)
+        this._state.dialogsPage = dialogsReducer (this._state.dialogsPage,action)
+        sidebarReducer (this._state.sidebar,action)
+        this._callBacker(this._state)
     },
     subscribe (obsorver) {
         this._callBacker = obsorver
     }
 }
-export const addPostActionCreator = () => ({type: ADD_POST})
 
-export const addPostTextActionCreator = (text) => ({type: ADD_POST_TEXT, newText: text})
 
-export const addMessageActionCreator = () => ({type : ADD_MESSAGE})
-
-export const addPostMessageText = (text) => ({type : "ADD-POST-MESSAGE-TEXT", newText : text})
 export default store
 
